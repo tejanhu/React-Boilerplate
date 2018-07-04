@@ -71,12 +71,16 @@
 
             getInitialState: function(){
                 return {
-                    comments:[
-                        "I like kebab",
-                        "Want to get honey?",
-                        "Ok, we have enough comments now"
-                    ]
+                    comments:[]
                 }
+            },
+
+            addComment: function(text){
+                var arr = this.state.comments;
+                arr.push(text);
+                this.setState({
+                    comments: arr
+                })
             },
 
             deleteComment: function (i){
@@ -108,11 +112,14 @@
 
             render: function(){
                 return   (
-                    <div className="board">
-                    {
-                        this.state.comments.map(this.eachComment)
-                    }
+                   <div>
+                        <button className="button-info create" onClick={this.addComment.bind(null, "Default text")}>Add New</button>
+                        <div className="board">
+                            {
+                                this.state.comments.map(this.eachComment)
+                            }
                     </div>
+                   </div>
                 );
             }
 
