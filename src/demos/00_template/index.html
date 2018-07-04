@@ -16,13 +16,24 @@
 
     <script type="text/babel">
 
-        var Kebab = React.createClass({
-            render: function(){
-                return   (<h2>This is a simple component!</h2>);
-            }
+        var Film = React.createClass({
+           render: function(){
+               return(
+                   <div>
+                    <h1>{this.props.title}</h1>
+                    <h2>{this.props.genre}</h2>
+
+
+
+                   </div>
+               );
+           }
         });
 
-        ReactDOM.render(<Kebab/>, document.getElementById('example'));
+        ReactDOM.render(
+           <Film title="Star Wars" genre="action" />
+        
+        , document.getElementById('example'));
 
     </script>
 
