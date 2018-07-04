@@ -4,43 +4,48 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>React - Template</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <script src="../../js/react.js"></script>
     <script src="../../js/react-dom.min.js"></script>
     <script src="../../js/browser.min.js"></script>
 </head>
 <body>
 
-    <div id="example">
+    <div id="container">
 
     </div>
 
     <script type="text/babel">
 
-        var Film = React.createClass({
-           render: function(){
-               return(
-                   <div>
-                    <h1>{this.props.title}</h1>
-                    <h2>{this.props.genre}</h2>
+        var Comment = React.createClass({
 
+            edit: function(){
+                alert("Editing Comment");
+            },
 
+            delete: function(){
+                alert("Deleting Comment");
+            },
 
-                   </div>
-               );
-           }
+            render: function(){
+                return (
+                    <div className="commentContainer">
+                        <div className="commentText"> {this.props.children}</div>
+                            <button className="button-primary" onClick={this.edit}>Edit</button>
+                            <button className="button-danger" onClick={this.delete}>Delete</button>
+                        
+                    </div>
+                );
+            }
         });
 
-        ReactDOM.render(
-            <div>
-            
-                <Film title="Star Wars" genre="action" />
-                <Film title="Artificial Intelligence" genre="sci-fi" />
-                <Film title="Blair Witch Project" genre="thriller" />
-            
-            </div>
-           
         
-        , document.getElementById('example'));
+        ReactDOM.render(
+            <div className="board">
+            <Comment>Hey Dude!</Comment>
+            <Comment>Where's the car?</Comment>
+            <Comment>I don't know dude!</Comment>
+            </div>, document.getElementById('container'));
 
     </script>
 
