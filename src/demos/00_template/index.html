@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>React - Template</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+    <script src="../../js/react.js"></script>
+    <script src="../../js/react-dom.min.js"></script>
+    <script src="../../js/browser.min.js"></script>
+</head>
+<body>
+
+    <div id="container">
+
+    </div>
+
+    <script type="text/babel">
+        var Comment = React.createClass({
+            getInitialState: function(){
+                return{editing: false}
+            },
+            edit: function(){
+                this.setState({
+                    editing: true
+                });
+            },
+            save: function(){
+                this.setState({
+                    editing: false
+                });
+            },
+            delete: function(){
+              console.log("Deleting comment");
+            },
+
+            renderNormal: function(){
+                return (
+                    <div className="commentContainer">
+                        <div className="commentText"> {this.props.children}</div>
+                            <button className="button-primary" onClick={this.edit}>Edit</button>
+                            <button className="button-danger" onClick={this.delete}>Delete</button>
+                        
+                    </div>
+                );
+            },
+
+            renderForm: function(){
+                return (
+                    <div className="commentContainer">
+                            <textarea defaultValue={this.props.children}></textarea>
+                            <button className="button-success" onClick={this.save}>Save</button>                        
+                    </div>
+                );
+            },
+
+            render: function(){
+                    if(this.state.editing){
+                        return this.renderForm();
+                    } else{
+                        return this.renderNormal();
+                    }
+                
+            }
+        });
+        
+        ReactDOM.render(
+            <div className="board">
+            <Comment>Hey Dude!</Comment>
+            <Comment>Where's the car?</Comment>
+            <Comment>I don't know dude!</Comment>
+            </div>, document.getElementById('container'));
+    </script>
+
+</body>
+</html>
