@@ -27,14 +27,14 @@
                 });
             },
             save: function(){
-                var val = this.refs.newText.value;
-                console.log("New Comment: "+val);
+                this.props.updateCommentText(this.refs.newText.value, this.props.index);
                 this.setState({
                     editing: false
                 });
             },
             delete: function(){
               console.log("Deleting comment");
+              this.props.deleteFromBoard(this.props.index);
             },
 
             renderNormal: function(){
@@ -100,7 +100,7 @@
             eachComment: function (text, i){
                         return (
                             
-                            <Comment key={i} index={i}>
+                            <Comment key={i} index={i} updateCommentText={this.updateComment} deleteFromBoard={this.deleteComment}>
                                 {text}
                             </Comment>
                             );
